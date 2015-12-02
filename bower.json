@@ -1,0 +1,19 @@
+{
+    "name": "scrollBoss",
+    "main": ["jquery.scrollBoss.js"],
+    "version": "1.0.0",
+    "homepage": "https://github.com/jcjmcclean/jquery.scrollBoss",
+    "authors": [
+        "James McClean <james@jamesmcclean.com>"
+    ],
+    "description": "scrollBoss & parallaxMofo fo yo",
+    "keywords": [
+        "parallax",
+        "scroll",
+        "jquery"
+    ],
+    "license": "GNU",
+    "dependencies": {
+        "jquery": ">=1.7"
+    }
+}
