@@ -1,6 +1,32 @@
+/*
+
+   ____             ______
+  / __/__________  / / / /  ___  ___ ___
+ _\ \/ __/ __/ _ \/ / / _ \/ _ \(_-<(_-<
+/___/\__/_/  \___/_/_/_.__/\___/___/___/
+
+Version: 1.0.0
+Author: James McClean
+Website: http://jcjmcclean.github.io
+Docs: http://jcjmcclean.github.io/jquery.scrollBoss
+Repo: http://github.com/jcjmcclean/jquery.scrollBoss
+Issues: http://github.com/jcjmcclean/jquery.scrollBoss/issues
+
+*/
+
 // scrollBoss
 (function( scrollBoss, $, undefined ) {
 
+	/*
+
+	Dependencies:
+	jQuery
+	offsetKitty
+	GSAP TweenMax
+
+	*/
+
+	// Do some fancy parallax
 	scrollBoss.parallaxMofo = function(options) {
 		// Define default settings
 		var defaults = {
@@ -16,7 +42,7 @@
 
 		if($(settings.hook).length > 0) {
 			// Set variables
-			var hookPosition = scrollBoss.getViewportOffset(settings.hook),
+			var hookPosition = offsetKitty.viewport(settings.hook),
 				percentage = 100 - (((hookPosition.top - settings.offset) / $(window).height()) * 100),
 				elemY = percentage * (settings.amount / 100) + 'px',
 				property = settings.property,
@@ -38,22 +64,6 @@
 			// Run animation
 			TweenMax.to(settings.elem, settings.duration, animationSettings);
 		}
-	}
-
-	// Find out element's viewport offset
-	scrollBoss.getViewportOffset = function($e) {
-		var $e = $($e),
-			$window = $(window),
-			scrollLeft = $window.scrollLeft(),
-			scrollTop = $window.scrollTop(),
-			offset = $e.offset(),
-			rect1 = { x1: scrollLeft, y1: scrollTop, x2: scrollLeft + $window.width(), y2: scrollTop + $window.height() },
-			rect2 = { x1: offset.left, y1: offset.top, x2: offset.left + $e.width(), y2: offset.top + $e.height() };
-		return {
-			left: offset.left - scrollLeft,
-			top: offset.top - scrollTop,
-			insideViewport: rect1.x1 < rect2.x2 && rect1.x2 > rect2.x1 && rect1.y1 < rect2.y2 && rect1.y2 > rect2.y1
-		};
 	}
 
 }( window.scrollBoss = window.scrollBoss || {}, jQuery ));
